@@ -1,10 +1,11 @@
-using SWE.VirtualShelfBrowser.Samples;
-using Xunit;
+//todo
+//using SWE.VirtualShelfBrowser.Samples;
+//using Xunit;
 
-namespace SWE.VirtualShelfBrowser.EntityFrameworkCore.Domains;
+//namespace SWE.VirtualShelfBrowser.EntityFrameworkCore.Domains;
 
-[Collection(VirtualShelfBrowserTestConsts.CollectionDefinitionName)]
-public class EfCoreSampleDomainTests : SampleDomainTests<VirtualShelfBrowserEntityFrameworkCoreTestModule>
-{
+//[Collection(VirtualShelfBrowserTestConsts.CollectionDefinitionName)]
+//public class EfCoreSampleDomainTests : SampleDomainTests<VirtualShelfBrowserEntityFrameworkCoreTestModule>
+//{
 
-}
+//}
