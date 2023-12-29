@@ -2,8 +2,7 @@
 
 namespace SWE.VirtualShelfBrowser;
 
-public abstract class VirtualShelfBrowserApplicationTestBase<TStartupModule> : VirtualShelfBrowserTestBase<TStartupModule>
-    where TStartupModule : IAbpModule
+public abstract class VirtualShelfBrowserApplicationTestBase : VirtualShelfBrowserTestBase<VirtualShelfBrowserApplicationTestModule>
 {
 
 }
