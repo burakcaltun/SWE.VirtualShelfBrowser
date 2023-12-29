@@ -1,9 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SWE.VirtualShelfBrowser.Authors;
+using SWE.VirtualShelfBrowser.Books;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
@@ -52,7 +55,8 @@ public class VirtualShelfBrowserDbContext :
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
     #endregion
-
+    public DbSet<Book> Books { get; set; }
+    public DbSet<Author> Authors { get; set; }
     public VirtualShelfBrowserDbContext(DbContextOptions<VirtualShelfBrowserDbContext> options)
         : base(options)
     {
@@ -74,13 +78,28 @@ public class VirtualShelfBrowserDbContext :
         builder.ConfigureFeatureManagement();
         builder.ConfigureTenantManagement();
 
-        /* Configure your own tables/entities inside here */
+        builder.Entity<Book>(b =>
+        {
+            b.ToTable(VirtualShelfBrowserConsts.DbTablePrefix + "Books", VirtualShelfBrowserConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.Name).IsRequired().HasMaxLength(128);
 
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(VirtualShelfBrowserConsts.DbTablePrefix + "YourEntities", VirtualShelfBrowserConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
+            b.HasOne<Author>().WithMany().HasForeignKey(x => x.AuthorId).IsRequired();
+        });
+
+
+        builder.Entity<Author>(b =>
+        {
+            b.ToTable(VirtualShelfBrowserConsts.DbTablePrefix + "Authors",
+                VirtualShelfBrowserConsts.DbSchema);
+
+            b.ConfigureByConvention();
+
+            b.Property(x => x.Name)
+                .IsRequired()
+                .HasMaxLength(AuthorConsts.MaxNameLength);
+
+            b.HasIndex(x => x.Name);
+        });
     }
 }
