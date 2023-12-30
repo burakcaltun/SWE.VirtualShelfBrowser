@@ -18,7 +18,7 @@ public class AuthorAppService_Tests : VirtualShelfBrowserApplicationTestBase
     [Fact]
     public async Task Should_Get_All_Authors_Without_Any_Filter()
     {
-        var result = await _authorAppService.GetListAsync(new GetAuthorListDto());
+        var result = await _authorAppService.GetListAsync(new GetBookListDto());
 
         result.TotalCount.ShouldBeGreaterThanOrEqualTo(2);
         result.Items.ShouldContain(author => author.Name == "George Orwell");
@@ -29,7 +29,7 @@ public class AuthorAppService_Tests : VirtualShelfBrowserApplicationTestBase
     public async Task Should_Get_Filtered_Authors()
     {
         var result = await _authorAppService.GetListAsync(
-            new GetAuthorListDto { Filter = "George" });
+            new GetBookListDto { Filter = "George" });
 
         result.TotalCount.ShouldBeGreaterThanOrEqualTo(1);
         result.Items.ShouldContain(author => author.Name == "George Orwell");

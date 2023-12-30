@@ -14,6 +14,8 @@ public class BookDto : AuditedEntityDto<Guid>
     public BookType Type { get; set; }
 
     public DateTime PublishDate { get; set; }
-
-    public float Price { get; set; }
+    public Location PhysicalLocation { get; set; }
+    public string Description { get; set; }
+    public string CoverImage { get; set; }
+    public int NumberOfPage { get; set; }
 }
