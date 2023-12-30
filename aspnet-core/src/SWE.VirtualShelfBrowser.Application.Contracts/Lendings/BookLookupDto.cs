@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Volo.Abp.Application.Dtos;
 
-namespace SWE.VirtualShelfBrowser.Lending
+namespace SWE.VirtualShelfBrowser.Lendings
 {
-    public class BookLookupDto : EntityDto<Guid>
+    public class LendingLookupDto : EntityDto<Guid>
     {
         public string Name { get; set; }
     }

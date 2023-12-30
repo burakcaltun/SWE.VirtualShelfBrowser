@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SWE.VirtualShelfBrowser.Lending;
+namespace SWE.VirtualShelfBrowser.Lendings;
 
 public class CreateUpdateLendingDto
 {

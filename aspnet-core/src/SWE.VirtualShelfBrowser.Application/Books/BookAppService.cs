@@ -136,12 +136,12 @@ public class BookAppService :
         );
     }
 
-    public async Task<ListResultDto<AuthorLookupDto>> GetAuthorLookupAsync()
+    public async Task<ListResultDto<BookLookupDto>> GetAuthorLookupAsync()
     {
         var authors = await _authorRepository.GetListAsync();
 
-        return new ListResultDto<AuthorLookupDto>(
-            ObjectMapper.Map<List<Author>, List<AuthorLookupDto>>(authors)
+        return new ListResultDto<BookLookupDto>(
+            ObjectMapper.Map<List<Author>, List<BookLookupDto>>(authors)
         );
     }
 

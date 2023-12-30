@@ -1,7 +1,7 @@
 using System;
 using Volo.Abp.Application.Dtos;
 
-namespace SWE.VirtualShelfBrowser.Books;
+namespace SWE.VirtualShelfBrowser.Lendings;
 
 public class LendingDto : AuditedEntityDto<Guid>
 {

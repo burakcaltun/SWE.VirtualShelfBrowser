@@ -24,6 +24,12 @@ public class VirtualShelfBrowserPermissionDefinitionProvider : PermissionDefinit
         authorsPermission.AddChild(
         VirtualShelfBrowserPermissions.Authors.Delete, L("Permission:Authors.Delete"));
 
+
+        var lendingPermission = virtualShelfBrowser.AddPermission(VirtualShelfBrowserPermissions.Lendings.Default, L("Permission:Lendings"));
+        lendingPermission.AddChild(VirtualShelfBrowserPermissions.Lendings.Create, L("Permission:Lendings.Create"));
+        lendingPermission.AddChild(VirtualShelfBrowserPermissions.Lendings.Edit, L("Permission:Lendings.Edit"));
+        lendingPermission.AddChild(VirtualShelfBrowserPermissions.Lendings.Delete, L("Permission:Lendings.Delete"));
+
     }
 
     private static LocalizableString L(string name)
