@@ -20,4 +20,12 @@ public static class VirtualShelfBrowserPermissions
         public const string Edit = Default + ".Edit";
         public const string Delete = Default + ".Delete";
     }
+
+    public static class Lendings
+    {
+        public const string Default = GroupName + ".Lendings";
+        public const string Create = Default + ".Create";
+        public const string Edit = Default + ".Edit";
+        public const string Delete = Default + ".Delete";
+    }
 }

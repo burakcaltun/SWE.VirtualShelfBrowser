@@ -18,5 +18,5 @@ public interface IBookAppService : IApplicationService
     Task<BookDto> CreateAsync(BookDto input);
     Task UpdateAsync(Guid id, BookDto input);
     Task DeleteAsync(Guid id);
-    Task<ListResultDto<AuthorLookupDto>> GetAuthorLookupAsync();
+    Task<ListResultDto<BookLookupDto>> GetAuthorLookupAsync();
 }
