@@ -15,9 +15,12 @@ public class CreateUpdateBookDto
     [Required]
     [DataType(DataType.Date)]
     public DateTime PublishDate { get; set; } = DateTime.Now;
+    public Location PhysicalLocation { get; set; } = Location.A1;
 
     [Required]
-    public float Price { get; set; }
+    public string Description { get; set; }
+    public string CoverImage { get; set; }
+    public int NumberOfPage { get; set; }
 
     public Guid AuthorId { get; set; }
 }
