@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SWE.VirtualShelfBrowser.Authors;
 using SWE.VirtualShelfBrowser.Books;
+using SWE.VirtualShelfBrowser.Lendings;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -57,6 +58,7 @@ public class VirtualShelfBrowserDbContext :
     #endregion
     public DbSet<Book> Books { get; set; }
     public DbSet<Author> Authors { get; set; }
+    public DbSet<Lending> Lendings { get; set; }
     public VirtualShelfBrowserDbContext(DbContextOptions<VirtualShelfBrowserDbContext> options)
         : base(options)
     {
