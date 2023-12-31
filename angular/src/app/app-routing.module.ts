@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BookModule } from './book/book.module';
 
 const routes: Routes = [
   {
@@ -25,10 +26,15 @@ const routes: Routes = [
     loadChildren: () =>
       import('@abp/ng.setting-management').then(m => m.SettingManagementModule.forLazy()),
   },
+  { path: 'authors', loadChildren: () => import('./author/author.module').then(m => m.AuthorModule) },
+  {
+    path: 'books', loadChildren: () => import('./book/book.module')
+      .then(m => m.BookModule)
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {})],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

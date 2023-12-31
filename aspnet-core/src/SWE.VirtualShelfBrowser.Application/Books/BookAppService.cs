@@ -13,7 +13,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace SWE.VirtualShelfBrowser.Books;
 
-[Authorize(VirtualShelfBrowserPermissions.Books.Default)]
+//[Authorize(VirtualShelfBrowserPermissions.Books.Default)]
 public class BookAppService :
     //CrudAppService<
     //    Book, //The Book entity
@@ -163,7 +163,7 @@ public class BookAppService :
 
     //    return $"book.{sorting}";
     //}
-    [Authorize(VirtualShelfBrowserPermissions.Books.Create)]
+    //[Authorize(VirtualShelfBrowserPermissions.Books.Create)]
     public async Task<BookDto> CreateAsync(BookDto input)
     {
         var book = await _bookManager.CreateAsync(
@@ -182,7 +182,7 @@ public class BookAppService :
         return ObjectMapper.Map<Book, BookDto>(book);
     }
 
-    [Authorize(VirtualShelfBrowserPermissions.Books.Edit)]
+    //[Authorize(VirtualShelfBrowserPermissions.Books.Edit)]
     public async Task UpdateAsync(Guid id, BookDto input)
     {
         var book = await _bookRepository.GetAsync(id);
@@ -199,7 +199,7 @@ public class BookAppService :
         await _bookRepository.UpdateAsync(book);
     }
 
-    [Authorize(VirtualShelfBrowserPermissions.Books.Delete)]
+    //[Authorize(VirtualShelfBrowserPermissions.Books.Delete)]
     public async Task DeleteAsync(Guid id)
     {
         await _bookRepository.DeleteAsync(id);
