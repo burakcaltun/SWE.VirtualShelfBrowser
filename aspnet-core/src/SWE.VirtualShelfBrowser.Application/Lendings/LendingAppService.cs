@@ -59,7 +59,7 @@ namespace SWE.VirtualShelfBrowser.Lendings
             );
         }
         
-        [Authorize(VirtualShelfBrowserPermissions.Lendings.Create)]
+        //[Authorize(VirtualShelfBrowserPermissions.Lendings.Create)]
         public async Task<LendingDto> CreateAsync(LendingDto input)
         {
             var lending = await _lendingManager.CreateAsync(
@@ -75,7 +75,7 @@ namespace SWE.VirtualShelfBrowser.Lendings
             return ObjectMapper.Map<Lending, LendingDto>(lending);
         }
 
-        [Authorize(VirtualShelfBrowserPermissions.Lendings.Edit)]
+        //[Authorize(VirtualShelfBrowserPermissions.Lendings.Edit)]
         public async Task UpdateAsync(Guid id, LendingDto input)
         {
             var lending = await _lendingRepository.GetAsync(id);
@@ -89,7 +89,7 @@ namespace SWE.VirtualShelfBrowser.Lendings
             await _lendingRepository.UpdateAsync(lending);
         }
 
-        [Authorize(VirtualShelfBrowserPermissions.Lendings.Delete)]
+        //[Authorize(VirtualShelfBrowserPermissions.Lendings.Delete)]
         public async Task DeleteAsync(Guid id)
         {
             await _lendingRepository.DeleteAsync(id);

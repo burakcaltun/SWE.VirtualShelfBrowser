@@ -9,7 +9,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace SWE.VirtualShelfBrowser.Authors;
 
-[Authorize(VirtualShelfBrowserPermissions.Authors.Default)]
+//[Authorize(VirtualShelfBrowserPermissions.Authors.Default)]
 public class AuthorAppService : VirtualShelfBrowserAppService, IAuthorAppService
 {
     private readonly IAuthorRepository _authorRepository;
@@ -52,7 +52,7 @@ public class AuthorAppService : VirtualShelfBrowserAppService, IAuthorAppService
             ObjectMapper.Map<List<Author>, List<AuthorDto>>(authors)
         );
     }
-    [Authorize(VirtualShelfBrowserPermissions.Authors.Create)]
+    //[Authorize(VirtualShelfBrowserPermissions.Authors.Create)]
     public async Task<AuthorDto> CreateAsync(CreateAuthorDto input)
     {
         var author = await _authorManager.CreateAsync(
@@ -66,7 +66,7 @@ public class AuthorAppService : VirtualShelfBrowserAppService, IAuthorAppService
         return ObjectMapper.Map<Author, AuthorDto>(author);
     }
 
-    [Authorize(VirtualShelfBrowserPermissions.Authors.Edit)]
+    //[Authorize(VirtualShelfBrowserPermissions.Authors.Edit)]
     public async Task UpdateAsync(Guid id, UpdateAuthorDto input)
     {
         var author = await _authorRepository.GetAsync(id);
@@ -82,7 +82,7 @@ public class AuthorAppService : VirtualShelfBrowserAppService, IAuthorAppService
         await _authorRepository.UpdateAsync(author);
     }
 
-    [Authorize(VirtualShelfBrowserPermissions.Authors.Delete)]
+    //[Authorize(VirtualShelfBrowserPermissions.Authors.Delete)]
     public async Task DeleteAsync(Guid id)
     {
         await _authorRepository.DeleteAsync(id);
