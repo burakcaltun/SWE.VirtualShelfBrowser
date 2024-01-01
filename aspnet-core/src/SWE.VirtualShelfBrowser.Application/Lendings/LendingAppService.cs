@@ -1,52 +1,93 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper.Internal.Mappers;
+using Microsoft.AspNetCore.Authorization;
+using SWE.VirtualShelfBrowser.Authors;
 using SWE.VirtualShelfBrowser.Books;
 using SWE.VirtualShelfBrowser.Permissions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Application.Services;
+using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Repositories;
 
 namespace SWE.VirtualShelfBrowser.Lendings
 {
-    public class LendingAppService: VirtualShelfBrowserAppService, ILendingAppService
+    public class LendingAppService :
+    CrudAppService<
+        Lending, //The Book entity
+        LendingDto, //Used to show books
+        Guid, //Primary key of the book entity
+        PagedAndSortedResultRequestDto, //Used for paging/sorting
+        CreateUpdateLendingDto>, //Used to create/update a book
+    ILendingAppService //implement the IBookAppService
     {
-        private readonly ILendingRepository _lendingRepository;
-        private readonly LendingManager _lendingManager;
         private readonly IBookRepository _bookRepository;
 
         public LendingAppService(
-            ILendingRepository lendingRepository,
-            LendingManager lendingManager,
+            IRepository<Lending, Guid> repository,
             IBookRepository bookRepository)
+            : base(repository)
         {
-            _lendingRepository = lendingRepository;
-            _lendingManager = lendingManager;
             _bookRepository = bookRepository;
         }
-        
-        public async Task<LendingDto> GetAsync(Guid id)
-        {
-            var lending = await _lendingRepository.GetAsync(id);
-            return ObjectMapper.Map<Lending, LendingDto>(lending);
-        }
-        public async Task<PagedResultDto<LendingDto>> GetListAsync(GetLendingListDto input)
-        {
-            
-            var lendings = await _lendingRepository.GetListAsync(
-                input.SkipCount,
-                input.MaxResultCount,
-                input.Sorting,
-                input.Filter
-            );
 
-            var totalCount = input.Filter == null
-                ? await _lendingRepository.CountAsync()
-                : await _lendingRepository.CountAsync();
+        public override async Task<LendingDto> GetAsync(Guid id)
+        {
+
+            var queryable = await Repository.GetQueryableAsync();
+
+
+            var query = from lending in queryable
+                        join book in await _bookRepository.GetQueryableAsync() on lending.BookId equals book.Id
+                        where book.Id == id
+                        select new { lending, book };
+
+
+            var queryResult = await AsyncExecuter.FirstOrDefaultAsync(query);
+            if (queryResult == null)
+            {
+                throw new EntityNotFoundException(typeof(Lending), id);
+            }
+
+            var lendingDto = ObjectMapper.Map<Lending, LendingDto>(queryResult.lending);
+            lendingDto.BookName = queryResult.book.Name;
+            return lendingDto;
+        }
+
+        public override async Task<PagedResultDto<LendingDto>> GetListAsync(PagedAndSortedResultRequestDto input)
+        {
+
+            var queryable = await Repository.GetQueryableAsync();
+
+
+            var query = from lending in queryable
+                        join book in await _bookRepository.GetQueryableAsync() on lening.BookId equals book.Id
+                        select new { lending, book };
+
+
+            query = query
+                .OrderBy(NormalizeSorting(input.Sorting))
+                .Skip(input.SkipCount)
+                .Take(input.MaxResultCount);
+
+
+            var queryResult = await AsyncExecuter.ToListAsync(query);
+
+
+            var lendingDtos = queryResult.Select(x =>
+            {
+                var lendingDto = ObjectMapper.Map<Lending, LendingDto>(x.lending);
+                lendingDto.BookName = x.book.Name;
+                return lendingDto;
+            }).ToList();
+
+
+            var totalCount = await Repository.GetCountAsync();
 
             return new PagedResultDto<LendingDto>(
                 totalCount,
-                ObjectMapper.Map<List<Lending>, List<LendingDto>>(lendings)
+                lendingDtos
             );
         }
 
@@ -58,41 +99,25 @@ namespace SWE.VirtualShelfBrowser.Lendings
                 ObjectMapper.Map<List<Book>, List<BookLookupDto>>(books)
             );
         }
-        
-        //[Authorize(VirtualShelfBrowserPermissions.Lendings.Create)]
-        public async Task<LendingDto> CreateAsync(LendingDto input)
+
+        private static string NormalizeSorting(string sorting)
         {
-            var lending = await _lendingManager.CreateAsync(
-                input.UserId,
-                input.LenderId,
-                input.BookId,
-                input.StartDate,
-                input.EndDate
-            );
+            if (sorting.IsNullOrEmpty())
+            {
+                return $"lending.{nameof(Lending.StartDate)}";
+            }
 
-            await _lendingRepository.InsertAsync(lending);
+            if (sorting.Contains("bookName", StringComparison.OrdinalIgnoreCase))
+            {
+                return sorting.Replace(
+                    "bookName",
+                    "book.Name",
+                    StringComparison.OrdinalIgnoreCase
+                );
+            }
 
-            return ObjectMapper.Map<Lending, LendingDto>(lending);
-        }
-
-        //[Authorize(VirtualShelfBrowserPermissions.Lendings.Edit)]
-        public async Task UpdateAsync(Guid id, LendingDto input)
-        {
-            var lending = await _lendingRepository.GetAsync(id);
-
-            lending.UserId = input.UserId;
-            lending.LenderId = input.LenderId;
-            lending.BookId = input.BookId;
-            lending.StartDate = input.StartDate;
-            lending.EndDate = input.EndDate;
-
-            await _lendingRepository.UpdateAsync(lending);
-        }
-
-        //[Authorize(VirtualShelfBrowserPermissions.Lendings.Delete)]
-        public async Task DeleteAsync(Guid id)
-        {
-            await _lendingRepository.DeleteAsync(id);
+            return $"lending.{sorting}";
         }
     }
+
 }
