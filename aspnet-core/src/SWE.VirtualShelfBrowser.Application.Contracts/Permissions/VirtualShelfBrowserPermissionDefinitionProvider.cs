@@ -15,14 +15,10 @@ public class VirtualShelfBrowserPermissionDefinitionProvider : PermissionDefinit
         booksPermission.AddChild(VirtualShelfBrowserPermissions.Books.Edit, L("Permission:Books.Edit"));
         booksPermission.AddChild(VirtualShelfBrowserPermissions.Books.Delete, L("Permission:Books.Delete"));
 
-        var authorsPermission = virtualShelfBrowser.AddPermission(
-        VirtualShelfBrowserPermissions.Authors.Default, L("Permission:Authors"));
-        authorsPermission.AddChild(
-        VirtualShelfBrowserPermissions.Authors.Create, L("Permission:Authors.Create"));
-        authorsPermission.AddChild(
-        VirtualShelfBrowserPermissions.Authors.Edit, L("Permission:Authors.Edit"));
-        authorsPermission.AddChild(
-        VirtualShelfBrowserPermissions.Authors.Delete, L("Permission:Authors.Delete"));
+        var authorsPermission = virtualShelfBrowser.AddPermission(VirtualShelfBrowserPermissions.Authors.Default, L("Permission:Authors"));
+        authorsPermission.AddChild(VirtualShelfBrowserPermissions.Authors.Create, L("Permission:Authors.Create"));
+        authorsPermission.AddChild(VirtualShelfBrowserPermissions.Authors.Edit, L("Permission:Authors.Edit"));
+        authorsPermission.AddChild(VirtualShelfBrowserPermissions.Authors.Delete, L("Permission:Authors.Delete"));
 
 
         var lendingPermission = virtualShelfBrowser.AddPermission(VirtualShelfBrowserPermissions.Lendings.Default, L("Permission:Lendings"));

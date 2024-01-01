@@ -11,9 +11,12 @@ public class VirtualShelfBrowserApplicationAutoMapperProfile : Profile
     {
         CreateMap<Book, BookDto>();
         CreateMap<CreateUpdateBookDto, Book>();
+        CreateMap<Book, BookLookupDto>();
+
         CreateMap<Author, AuthorDto>();
-        CreateMap<Author, BookLookupDto>();
+        CreateMap<Author, AuthorLookupDto>();
+
         CreateMap<Lending, LendingDto>();
-        CreateMap<LendingDto, Lending>();
+        CreateMap<CreateUpdateLendingDto, Lending>();
     }
 }

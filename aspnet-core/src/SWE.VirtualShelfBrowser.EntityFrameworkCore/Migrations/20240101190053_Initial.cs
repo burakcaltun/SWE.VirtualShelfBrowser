@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SWE.VirtualShelfBrowser.Migrations
 {
     /// <inheritdoc />
-    public partial class castle : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -414,31 +414,6 @@ namespace SWE.VirtualShelfBrowser.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Lendings",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    LenderId = table.Column<Guid>(type: "uuid", nullable: false),
-                    BookId = table.Column<Guid>(type: "uuid", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    ExtraProperties = table.Column<string>(type: "text", nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
-                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Lendings", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "OpenIddictApplications",
                 columns: table => new
                 {
@@ -823,6 +798,37 @@ namespace SWE.VirtualShelfBrowser.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AppLendings",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    LenderId = table.Column<Guid>(type: "uuid", nullable: false),
+                    BookId = table.Column<Guid>(type: "uuid", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "text", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppLendings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AppLendings_AppBooks_BookId",
+                        column: x => x.BookId,
+                        principalTable: "AppBooks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OpenIddictTokens",
                 columns: table => new
                 {
@@ -1068,6 +1074,11 @@ namespace SWE.VirtualShelfBrowser.Migrations
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AppLendings_BookId",
+                table: "AppLendings",
+                column: "BookId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OpenIddictApplications_ClientId",
                 table: "OpenIddictApplications",
                 column: "ClientId");
@@ -1171,10 +1182,7 @@ namespace SWE.VirtualShelfBrowser.Migrations
                 name: "AbpUserTokens");
 
             migrationBuilder.DropTable(
-                name: "AppBooks");
-
-            migrationBuilder.DropTable(
-                name: "Lendings");
+                name: "AppLendings");
 
             migrationBuilder.DropTable(
                 name: "OpenIddictScopes");
@@ -1198,13 +1206,16 @@ namespace SWE.VirtualShelfBrowser.Migrations
                 name: "AbpUsers");
 
             migrationBuilder.DropTable(
-                name: "AppAuthors");
+                name: "AppBooks");
 
             migrationBuilder.DropTable(
                 name: "OpenIddictAuthorizations");
 
             migrationBuilder.DropTable(
                 name: "AbpAuditLogs");
+
+            migrationBuilder.DropTable(
+                name: "AppAuthors");
 
             migrationBuilder.DropTable(
                 name: "OpenIddictApplications");

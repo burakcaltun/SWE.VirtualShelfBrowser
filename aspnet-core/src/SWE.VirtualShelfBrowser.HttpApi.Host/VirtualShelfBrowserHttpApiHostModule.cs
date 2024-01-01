@@ -29,6 +29,7 @@ using Volo.Abp.Security.Claims;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
+using SWE.VirtualShelfBrowser.Books;
 
 namespace SWE.VirtualShelfBrowser;
 
@@ -138,11 +139,10 @@ public class VirtualShelfBrowserHttpApiHostModule : AbpModule
             options.ConventionalControllers.Create(typeof(VirtualShelfBrowserApplicationModule).Assembly);
         });
     }
-
     private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)
     {
         context.Services.AddAbpSwaggerGenWithOAuth(
-            configuration["AuthServer:Authority"]!,
+            configuration["AuthServer:Authority"],
             new Dictionary<string, string>
             {
                     {"VirtualShelfBrowser", "VirtualShelfBrowser API"}
