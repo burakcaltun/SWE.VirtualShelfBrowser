@@ -76,7 +76,7 @@ namespace SWE.VirtualShelfBrowser.Lendings
 
 
             query = query
-                .OrderBy(NormalizeSorting(input.Sorting))
+                //.OrderBy(NormalizeSorting(input.Sorting))
                 .Skip(input.SkipCount)
                 .Take(input.MaxResultCount);
 
@@ -109,21 +109,24 @@ namespace SWE.VirtualShelfBrowser.Lendings
             );
         }
 
-        private static string NormalizeSorting(string sorting)
-        {
+        //private static string NormalizeSorting(string sorting)
+        //{
 
+        //    if (sorting != null)
+        //    {
+        //        if (sorting.Contains("bookName", StringComparison.OrdinalIgnoreCase))
+        //        {
+        //            return sorting.Replace(
+        //                "bookName",
+        //                "book.Name",
+        //                StringComparison.OrdinalIgnoreCase
+        //            );
+        //        }
 
-            if (sorting.Contains("bookName", StringComparison.OrdinalIgnoreCase))
-            {
-                return sorting.Replace(
-                    "bookName",
-                    "book.Name",
-                    StringComparison.OrdinalIgnoreCase
-                );
-            }
+        //    }
 
-            return $"book.{sorting}";
-        }
+        //    return $"book.{sorting}";
+        //}
 
     }
 }
