@@ -10,7 +10,7 @@ export enum BookType {
   Science = 6,
   ScienceFiction = 7,
   Poetry = 8,
-  Ergul = 9,
+  Romance = 9,
 }
 
 export const bookTypeOptions = mapEnumToOptions(BookType);

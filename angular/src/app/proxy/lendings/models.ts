@@ -1,7 +1,11 @@
-import type { AuditedEntityDto, PagedAndSortedResultRequestDto } from '@abp/ng.core';
+import type { AuditedEntityDto } from '@abp/ng.core';
 
-export interface GetLendingListDto extends PagedAndSortedResultRequestDto {
-  filter?: string;
+export interface CreateUpdateLendingDto {
+  startDate: string;
+  endDate: string;
+  bookId?: string;
+  userId?: string;
+  lenderId?: string;
 }
 
 export interface LendingDto extends AuditedEntityDto<string> {

@@ -1561,7 +1561,109 @@
             {
               "type": "SWE.VirtualShelfBrowser.Lendings.ILendingAppService",
               "name": "ILendingAppService",
-              "methods": []
+              "methods": [
+                {
+                  "name": "GetBookLookupAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "Volo.Abp.Application.Dtos.ListResultDto<SWE.VirtualShelfBrowser.Books.BookLookupDto>",
+                    "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<SWE.VirtualShelfBrowser.Books.BookLookupDto>"
+                  }
+                },
+                {
+                  "name": "GetAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "SWE.VirtualShelfBrowser.Lendings.LendingDto",
+                    "typeSimple": "SWE.VirtualShelfBrowser.Lendings.LendingDto"
+                  }
+                },
+                {
+                  "name": "GetListAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto, Volo.Abp.Ddd.Application.Contracts",
+                      "type": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+                      "typeSimple": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Volo.Abp.Application.Dtos.PagedResultDto<SWE.VirtualShelfBrowser.Lendings.LendingDto>",
+                    "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SWE.VirtualShelfBrowser.Lendings.LendingDto>"
+                  }
+                },
+                {
+                  "name": "CreateAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto, SWE.VirtualShelfBrowser.Application.Contracts",
+                      "type": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto",
+                      "typeSimple": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "SWE.VirtualShelfBrowser.Lendings.LendingDto",
+                    "typeSimple": "SWE.VirtualShelfBrowser.Lendings.LendingDto"
+                  }
+                },
+                {
+                  "name": "UpdateAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "input",
+                      "typeAsString": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto, SWE.VirtualShelfBrowser.Application.Contracts",
+                      "type": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto",
+                      "typeSimple": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "SWE.VirtualShelfBrowser.Lendings.LendingDto",
+                    "typeSimple": "SWE.VirtualShelfBrowser.Lendings.LendingDto"
+                  }
+                },
+                {
+                  "name": "DeleteAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Void",
+                    "typeSimple": "System.Void"
+                  }
+                }
+              ]
             }
           ],
           "actions": {
@@ -1600,7 +1702,7 @@
                 "typeSimple": "SWE.VirtualShelfBrowser.Lendings.LendingDto"
               },
               "allowAnonymous": null,
-              "implementFrom": "SWE.VirtualShelfBrowser.Lendings.LendingAppService"
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<SWE.VirtualShelfBrowser.Lendings.LendingDto,SWE.VirtualShelfBrowser.Lendings.LendingDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
             },
             "GetListAsyncByInput": {
               "uniqueName": "GetListAsyncByInput",
@@ -1611,26 +1713,14 @@
               "parametersOnMethod": [
                 {
                   "name": "input",
-                  "typeAsString": "SWE.VirtualShelfBrowser.Lendings.GetLendingListDto, SWE.VirtualShelfBrowser.Application.Contracts",
-                  "type": "SWE.VirtualShelfBrowser.Lendings.GetLendingListDto",
-                  "typeSimple": "SWE.VirtualShelfBrowser.Lendings.GetLendingListDto",
+                  "typeAsString": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto, Volo.Abp.Ddd.Application.Contracts",
+                  "type": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+                  "typeSimple": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
               ],
               "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "Filter",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
                 {
                   "nameOnMethod": "input",
                   "name": "Sorting",
@@ -1673,7 +1763,7 @@
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SWE.VirtualShelfBrowser.Lendings.LendingDto>"
               },
               "allowAnonymous": null,
-              "implementFrom": "SWE.VirtualShelfBrowser.Lendings.LendingAppService"
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<SWE.VirtualShelfBrowser.Lendings.LendingDto,SWE.VirtualShelfBrowser.Lendings.LendingDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
             },
             "GetBookLookupAsync": {
               "uniqueName": "GetBookLookupAsync",
@@ -1688,7 +1778,7 @@
                 "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<SWE.VirtualShelfBrowser.Books.BookLookupDto>"
               },
               "allowAnonymous": null,
-              "implementFrom": "SWE.VirtualShelfBrowser.Lendings.LendingAppService"
+              "implementFrom": "SWE.VirtualShelfBrowser.Lendings.ILendingAppService"
             },
             "CreateAsyncByInput": {
               "uniqueName": "CreateAsyncByInput",
@@ -1699,9 +1789,9 @@
               "parametersOnMethod": [
                 {
                   "name": "input",
-                  "typeAsString": "SWE.VirtualShelfBrowser.Lendings.LendingDto, SWE.VirtualShelfBrowser.Application.Contracts",
-                  "type": "SWE.VirtualShelfBrowser.Lendings.LendingDto",
-                  "typeSimple": "SWE.VirtualShelfBrowser.Lendings.LendingDto",
+                  "typeAsString": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto, SWE.VirtualShelfBrowser.Application.Contracts",
+                  "type": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto",
+                  "typeSimple": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -1711,8 +1801,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "SWE.VirtualShelfBrowser.Lendings.LendingDto",
-                  "typeSimple": "SWE.VirtualShelfBrowser.Lendings.LendingDto",
+                  "type": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto",
+                  "typeSimple": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -1724,8 +1814,8 @@
                 "type": "SWE.VirtualShelfBrowser.Lendings.LendingDto",
                 "typeSimple": "SWE.VirtualShelfBrowser.Lendings.LendingDto"
               },
-              "allowAnonymous": false,
-              "implementFrom": "SWE.VirtualShelfBrowser.Lendings.LendingAppService"
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<SWE.VirtualShelfBrowser.Lendings.LendingDto,SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto>"
             },
             "UpdateAsyncByIdAndInput": {
               "uniqueName": "UpdateAsyncByIdAndInput",
@@ -1744,9 +1834,9 @@
                 },
                 {
                   "name": "input",
-                  "typeAsString": "SWE.VirtualShelfBrowser.Lendings.LendingDto, SWE.VirtualShelfBrowser.Application.Contracts",
-                  "type": "SWE.VirtualShelfBrowser.Lendings.LendingDto",
-                  "typeSimple": "SWE.VirtualShelfBrowser.Lendings.LendingDto",
+                  "typeAsString": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto, SWE.VirtualShelfBrowser.Application.Contracts",
+                  "type": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto",
+                  "typeSimple": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -1768,8 +1858,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "SWE.VirtualShelfBrowser.Lendings.LendingDto",
-                  "typeSimple": "SWE.VirtualShelfBrowser.Lendings.LendingDto",
+                  "type": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto",
+                  "typeSimple": "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -1778,11 +1868,11 @@
                 }
               ],
               "returnValue": {
-                "type": "System.Void",
-                "typeSimple": "System.Void"
+                "type": "SWE.VirtualShelfBrowser.Lendings.LendingDto",
+                "typeSimple": "SWE.VirtualShelfBrowser.Lendings.LendingDto"
               },
-              "allowAnonymous": false,
-              "implementFrom": "SWE.VirtualShelfBrowser.Lendings.LendingAppService"
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<SWE.VirtualShelfBrowser.Lendings.LendingDto,System.Guid,SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto>"
             },
             "DeleteAsyncById": {
               "uniqueName": "DeleteAsyncById",
@@ -1818,8 +1908,8 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": false,
-              "implementFrom": "SWE.VirtualShelfBrowser.Lendings.LendingAppService"
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             }
           }
         },
@@ -1835,6 +1925,14 @@
               "type": "SWE.VirtualShelfBrowser.Books.IBookAppService",
               "name": "IBookAppService",
               "methods": [
+                {
+                  "name": "GetAuthorLookupAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "Volo.Abp.Application.Dtos.ListResultDto<SWE.VirtualShelfBrowser.Books.AuthorLookupDto>",
+                    "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<SWE.VirtualShelfBrowser.Books.AuthorLookupDto>"
+                  }
+                },
                 {
                   "name": "GetAsync",
                   "parametersOnMethod": [
@@ -1857,9 +1955,9 @@
                   "parametersOnMethod": [
                     {
                       "name": "input",
-                      "typeAsString": "SWE.VirtualShelfBrowser.Books.GetBookListDto, SWE.VirtualShelfBrowser.Application.Contracts",
-                      "type": "SWE.VirtualShelfBrowser.Books.GetBookListDto",
-                      "typeSimple": "SWE.VirtualShelfBrowser.Books.GetBookListDto",
+                      "typeAsString": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto, Volo.Abp.Ddd.Application.Contracts",
+                      "type": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+                      "typeSimple": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
                       "isOptional": false,
                       "defaultValue": null
                     }
@@ -1874,9 +1972,9 @@
                   "parametersOnMethod": [
                     {
                       "name": "input",
-                      "typeAsString": "SWE.VirtualShelfBrowser.Books.BookDto, SWE.VirtualShelfBrowser.Application.Contracts",
-                      "type": "SWE.VirtualShelfBrowser.Books.BookDto",
-                      "typeSimple": "SWE.VirtualShelfBrowser.Books.BookDto",
+                      "typeAsString": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto, SWE.VirtualShelfBrowser.Application.Contracts",
+                      "type": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto",
+                      "typeSimple": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto",
                       "isOptional": false,
                       "defaultValue": null
                     }
@@ -1899,16 +1997,16 @@
                     },
                     {
                       "name": "input",
-                      "typeAsString": "SWE.VirtualShelfBrowser.Books.BookDto, SWE.VirtualShelfBrowser.Application.Contracts",
-                      "type": "SWE.VirtualShelfBrowser.Books.BookDto",
-                      "typeSimple": "SWE.VirtualShelfBrowser.Books.BookDto",
+                      "typeAsString": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto, SWE.VirtualShelfBrowser.Application.Contracts",
+                      "type": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto",
+                      "typeSimple": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto",
                       "isOptional": false,
                       "defaultValue": null
                     }
                   ],
                   "returnValue": {
-                    "type": "System.Void",
-                    "typeSimple": "System.Void"
+                    "type": "SWE.VirtualShelfBrowser.Books.BookDto",
+                    "typeSimple": "SWE.VirtualShelfBrowser.Books.BookDto"
                   }
                 },
                 {
@@ -1926,14 +2024,6 @@
                   "returnValue": {
                     "type": "System.Void",
                     "typeSimple": "System.Void"
-                  }
-                },
-                {
-                  "name": "GetAuthorLookupAsync",
-                  "parametersOnMethod": [],
-                  "returnValue": {
-                    "type": "Volo.Abp.Application.Dtos.ListResultDto<SWE.VirtualShelfBrowser.Books.BookLookupDto>",
-                    "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<SWE.VirtualShelfBrowser.Books.BookLookupDto>"
                   }
                 }
               ]
@@ -1974,8 +2064,8 @@
                 "type": "SWE.VirtualShelfBrowser.Books.BookDto",
                 "typeSimple": "SWE.VirtualShelfBrowser.Books.BookDto"
               },
-              "allowAnonymous": false,
-              "implementFrom": "SWE.VirtualShelfBrowser.Books.IBookAppService"
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<SWE.VirtualShelfBrowser.Books.BookDto,SWE.VirtualShelfBrowser.Books.BookDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
             },
             "GetListAsyncByInput": {
               "uniqueName": "GetListAsyncByInput",
@@ -1986,26 +2076,14 @@
               "parametersOnMethod": [
                 {
                   "name": "input",
-                  "typeAsString": "SWE.VirtualShelfBrowser.Books.GetBookListDto, SWE.VirtualShelfBrowser.Application.Contracts",
-                  "type": "SWE.VirtualShelfBrowser.Books.GetBookListDto",
-                  "typeSimple": "SWE.VirtualShelfBrowser.Books.GetBookListDto",
+                  "typeAsString": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto, Volo.Abp.Ddd.Application.Contracts",
+                  "type": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+                  "typeSimple": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
               ],
               "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "Filter",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
                 {
                   "nameOnMethod": "input",
                   "name": "Sorting",
@@ -2047,8 +2125,8 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<SWE.VirtualShelfBrowser.Books.BookDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SWE.VirtualShelfBrowser.Books.BookDto>"
               },
-              "allowAnonymous": false,
-              "implementFrom": "SWE.VirtualShelfBrowser.Books.IBookAppService"
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<SWE.VirtualShelfBrowser.Books.BookDto,SWE.VirtualShelfBrowser.Books.BookDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
             },
             "GetAuthorLookupAsync": {
               "uniqueName": "GetAuthorLookupAsync",
@@ -2059,10 +2137,10 @@
               "parametersOnMethod": [],
               "parameters": [],
               "returnValue": {
-                "type": "Volo.Abp.Application.Dtos.ListResultDto<SWE.VirtualShelfBrowser.Books.BookLookupDto>",
-                "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<SWE.VirtualShelfBrowser.Books.BookLookupDto>"
+                "type": "Volo.Abp.Application.Dtos.ListResultDto<SWE.VirtualShelfBrowser.Books.AuthorLookupDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<SWE.VirtualShelfBrowser.Books.AuthorLookupDto>"
               },
-              "allowAnonymous": false,
+              "allowAnonymous": null,
               "implementFrom": "SWE.VirtualShelfBrowser.Books.IBookAppService"
             },
             "CreateAsyncByInput": {
@@ -2074,9 +2152,9 @@
               "parametersOnMethod": [
                 {
                   "name": "input",
-                  "typeAsString": "SWE.VirtualShelfBrowser.Books.BookDto, SWE.VirtualShelfBrowser.Application.Contracts",
-                  "type": "SWE.VirtualShelfBrowser.Books.BookDto",
-                  "typeSimple": "SWE.VirtualShelfBrowser.Books.BookDto",
+                  "typeAsString": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto, SWE.VirtualShelfBrowser.Application.Contracts",
+                  "type": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto",
+                  "typeSimple": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -2086,8 +2164,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "SWE.VirtualShelfBrowser.Books.BookDto",
-                  "typeSimple": "SWE.VirtualShelfBrowser.Books.BookDto",
+                  "type": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto",
+                  "typeSimple": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -2099,8 +2177,8 @@
                 "type": "SWE.VirtualShelfBrowser.Books.BookDto",
                 "typeSimple": "SWE.VirtualShelfBrowser.Books.BookDto"
               },
-              "allowAnonymous": false,
-              "implementFrom": "SWE.VirtualShelfBrowser.Books.IBookAppService"
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<SWE.VirtualShelfBrowser.Books.BookDto,SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto>"
             },
             "UpdateAsyncByIdAndInput": {
               "uniqueName": "UpdateAsyncByIdAndInput",
@@ -2119,9 +2197,9 @@
                 },
                 {
                   "name": "input",
-                  "typeAsString": "SWE.VirtualShelfBrowser.Books.BookDto, SWE.VirtualShelfBrowser.Application.Contracts",
-                  "type": "SWE.VirtualShelfBrowser.Books.BookDto",
-                  "typeSimple": "SWE.VirtualShelfBrowser.Books.BookDto",
+                  "typeAsString": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto, SWE.VirtualShelfBrowser.Application.Contracts",
+                  "type": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto",
+                  "typeSimple": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -2143,8 +2221,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "SWE.VirtualShelfBrowser.Books.BookDto",
-                  "typeSimple": "SWE.VirtualShelfBrowser.Books.BookDto",
+                  "type": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto",
+                  "typeSimple": "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -2153,11 +2231,11 @@
                 }
               ],
               "returnValue": {
-                "type": "System.Void",
-                "typeSimple": "System.Void"
+                "type": "SWE.VirtualShelfBrowser.Books.BookDto",
+                "typeSimple": "SWE.VirtualShelfBrowser.Books.BookDto"
               },
-              "allowAnonymous": false,
-              "implementFrom": "SWE.VirtualShelfBrowser.Books.IBookAppService"
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<SWE.VirtualShelfBrowser.Books.BookDto,System.Guid,SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto>"
             },
             "DeleteAsyncById": {
               "uniqueName": "DeleteAsyncById",
@@ -2193,8 +2271,8 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": false,
-              "implementFrom": "SWE.VirtualShelfBrowser.Books.IBookAppService"
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             }
           }
         },
@@ -2341,7 +2419,7 @@
                 "type": "SWE.VirtualShelfBrowser.Authors.AuthorDto",
                 "typeSimple": "SWE.VirtualShelfBrowser.Authors.AuthorDto"
               },
-              "allowAnonymous": false,
+              "allowAnonymous": null,
               "implementFrom": "SWE.VirtualShelfBrowser.Authors.IAuthorAppService"
             },
             "GetListAsyncByInput": {
@@ -2414,7 +2492,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<SWE.VirtualShelfBrowser.Authors.AuthorDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SWE.VirtualShelfBrowser.Authors.AuthorDto>"
               },
-              "allowAnonymous": false,
+              "allowAnonymous": null,
               "implementFrom": "SWE.VirtualShelfBrowser.Authors.IAuthorAppService"
             },
             "CreateAsyncByInput": {
@@ -2451,7 +2529,7 @@
                 "type": "SWE.VirtualShelfBrowser.Authors.AuthorDto",
                 "typeSimple": "SWE.VirtualShelfBrowser.Authors.AuthorDto"
               },
-              "allowAnonymous": false,
+              "allowAnonymous": null,
               "implementFrom": "SWE.VirtualShelfBrowser.Authors.IAuthorAppService"
             },
             "UpdateAsyncByIdAndInput": {
@@ -2508,7 +2586,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": false,
+              "allowAnonymous": null,
               "implementFrom": "SWE.VirtualShelfBrowser.Authors.IAuthorAppService"
             },
             "DeleteAsyncById": {
@@ -2545,7 +2623,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": false,
+              "allowAnonymous": null,
               "implementFrom": "SWE.VirtualShelfBrowser.Authors.IAuthorAppService"
             }
           }
@@ -9955,15 +10033,15 @@
       "genericArguments": null,
       "properties": []
     },
-    "SWE.VirtualShelfBrowser.Lendings.GetLendingListDto": {
-      "baseType": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+    "SWE.VirtualShelfBrowser.Books.BookLookupDto": {
+      "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Guid>",
       "isEnum": false,
       "enumNames": null,
       "enumValues": null,
       "genericArguments": null,
       "properties": [
         {
-          "name": "Filter",
+          "name": "Name",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
@@ -9976,17 +10054,65 @@
         }
       ]
     },
-    "SWE.VirtualShelfBrowser.Books.BookLookupDto": {
-      "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Guid>",
+    "SWE.VirtualShelfBrowser.Lendings.CreateUpdateLendingDto": {
+      "baseType": null,
       "isEnum": false,
       "enumNames": null,
       "enumValues": null,
       "genericArguments": null,
       "properties": [
         {
-          "name": "Name",
+          "name": "StartDate",
           "jsonName": null,
-          "type": "System.String",
+          "type": "System.DateTime",
+          "typeSimple": "string",
+          "isRequired": true,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "EndDate",
+          "jsonName": null,
+          "type": "System.DateTime",
+          "typeSimple": "string",
+          "isRequired": true,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "BookId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "UserId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "LenderId",
+          "jsonName": null,
+          "type": "System.Guid",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
@@ -10127,7 +10253,7 @@
         "Science",
         "ScienceFiction",
         "Poetry",
-        "Ergul"
+        "Romance"
       ],
       "enumValues": [
         0,
@@ -10214,17 +10340,122 @@
       "genericArguments": null,
       "properties": null
     },
-    "SWE.VirtualShelfBrowser.Books.GetBookListDto": {
-      "baseType": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+    "SWE.VirtualShelfBrowser.Books.AuthorLookupDto": {
+      "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Guid>",
       "isEnum": false,
       "enumNames": null,
       "enumValues": null,
       "genericArguments": null,
       "properties": [
         {
-          "name": "Filter",
+          "name": "Name",
           "jsonName": null,
           "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "SWE.VirtualShelfBrowser.Books.CreateUpdateBookDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "Name",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": true,
+          "minLength": 0,
+          "maxLength": 128,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Type",
+          "jsonName": null,
+          "type": "SWE.VirtualShelfBrowser.Books.BookType",
+          "typeSimple": "SWE.VirtualShelfBrowser.Books.BookType",
+          "isRequired": true,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "PublishDate",
+          "jsonName": null,
+          "type": "System.DateTime",
+          "typeSimple": "string",
+          "isRequired": true,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "PhysicalLocation",
+          "jsonName": null,
+          "type": "SWE.VirtualShelfBrowser.Books.Location",
+          "typeSimple": "SWE.VirtualShelfBrowser.Books.Location",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Description",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": true,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "CoverImage",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "NumberOfPage",
+          "jsonName": null,
+          "type": "System.Int32",
+          "typeSimple": "number",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "AuthorId",
+          "jsonName": null,
+          "type": "System.Guid",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,

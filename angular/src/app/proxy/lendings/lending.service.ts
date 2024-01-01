@@ -1,6 +1,6 @@
-import type { GetLendingListDto, LendingDto } from './models';
+import type { CreateUpdateLendingDto, LendingDto } from './models';
 import { RestService, Rest } from '@abp/ng.core';
-import type { ListResultDto, PagedResultDto } from '@abp/ng.core';
+import type { ListResultDto, PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
 import type { BookLookupDto } from '../books/models';
 
@@ -11,7 +11,7 @@ export class LendingService {
   apiName = 'Default';
   
 
-  create = (input: LendingDto, config?: Partial<Rest.Config>) =>
+  create = (input: CreateUpdateLendingDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, LendingDto>({
       method: 'POST',
       url: '/api/app/lending',
@@ -44,17 +44,17 @@ export class LendingService {
     { apiName: this.apiName,...config });
   
 
-  getList = (input: GetLendingListDto, config?: Partial<Rest.Config>) =>
+  getList = (input: PagedAndSortedResultRequestDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, PagedResultDto<LendingDto>>({
       method: 'GET',
       url: '/api/app/lending',
-      params: { filter: input.filter, sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
+      params: { sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
     },
     { apiName: this.apiName,...config });
   
 
-  update = (id: string, input: LendingDto, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, void>({
+  update = (id: string, input: CreateUpdateLendingDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, LendingDto>({
       method: 'PUT',
       url: `/api/app/lending/${id}`,
       body: input,
