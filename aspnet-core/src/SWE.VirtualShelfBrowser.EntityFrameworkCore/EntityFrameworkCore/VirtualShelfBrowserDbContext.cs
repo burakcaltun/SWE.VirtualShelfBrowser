@@ -103,5 +103,19 @@ public class VirtualShelfBrowserDbContext :
 
             b.HasIndex(x => x.Name);
         });
+
+
+        builder.Entity<Lending>(b =>
+        {
+            b.ToTable(VirtualShelfBrowserConsts.DbTablePrefix + "Lendings", VirtualShelfBrowserConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.BookId);
+            b.Property(x => x.UserId);
+            b.Property(x => x.LenderId);
+            b.Property(x => x.StartDate);
+            b.Property(x => x.EndDate);
+
+            b.HasOne<Book>().WithMany().HasForeignKey(x => x.BookId).IsRequired();
+        });
     }
 }

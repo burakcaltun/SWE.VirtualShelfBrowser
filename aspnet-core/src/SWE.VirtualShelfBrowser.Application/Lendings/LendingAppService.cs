@@ -1,26 +1,29 @@
-﻿using AutoMapper.Internal.Mappers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Dynamic.Core;
+using System.Net.Security;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using SWE.VirtualShelfBrowser.Authors;
 using SWE.VirtualShelfBrowser.Books;
 using SWE.VirtualShelfBrowser.Permissions;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Repositories;
 
+
 namespace SWE.VirtualShelfBrowser.Lendings
 {
+    //[Authorize(VirtualShelfBrowserPermissions.Lendings.Default)]
     public class LendingAppService :
-    CrudAppService<
-        Lending, //The Book entity
-        LendingDto, //Used to show books
-        Guid, //Primary key of the book entity
-        PagedAndSortedResultRequestDto, //Used for paging/sorting
-        CreateUpdateLendingDto>, //Used to create/update a book
-    ILendingAppService //implement the IBookAppService
+        CrudAppService<
+            Lending, //The Book entity
+            LendingDto, //Used to show books
+            Guid, //Primary key of the book entity
+            PagedAndSortedResultRequestDto, //Used for paging/sorting
+            CreateUpdateLendingDto>, //Used to create/update a book
+        ILendingAppService //implement the IBookAppService
     {
         private readonly IBookRepository _bookRepository;
 
@@ -30,7 +33,13 @@ namespace SWE.VirtualShelfBrowser.Lendings
             : base(repository)
         {
             _bookRepository = bookRepository;
+            //GetPolicyName = VirtualShelfBrowserPermissions.Books.Default;
+            //GetListPolicyName = VirtualShelfBrowserPermissions.Books.Default;
+            //CreatePolicyName = VirtualShelfBrowserPermissions.Books.Create;
+            //UpdatePolicyName = VirtualShelfBrowserPermissions.Books.Edit;
+            //DeletePolicyName = VirtualShelfBrowserPermissions.Books.Delete;
         }
+
 
         public override async Task<LendingDto> GetAsync(Guid id)
         {
@@ -40,7 +49,7 @@ namespace SWE.VirtualShelfBrowser.Lendings
 
             var query = from lending in queryable
                         join book in await _bookRepository.GetQueryableAsync() on lending.BookId equals book.Id
-                        where book.Id == id
+                        where lending.Id == id
                         select new { lending, book };
 
 
@@ -62,7 +71,7 @@ namespace SWE.VirtualShelfBrowser.Lendings
 
 
             var query = from lending in queryable
-                        join book in await _bookRepository.GetQueryableAsync() on lening.BookId equals book.Id
+                        join book in await _bookRepository.GetQueryableAsync() on lending.BookId equals book.Id
                         select new { lending, book };
 
 
@@ -102,10 +111,7 @@ namespace SWE.VirtualShelfBrowser.Lendings
 
         private static string NormalizeSorting(string sorting)
         {
-            if (sorting.IsNullOrEmpty())
-            {
-                return $"lending.{nameof(Lending.StartDate)}";
-            }
+
 
             if (sorting.Contains("bookName", StringComparison.OrdinalIgnoreCase))
             {
@@ -116,8 +122,8 @@ namespace SWE.VirtualShelfBrowser.Lendings
                 );
             }
 
-            return $"lending.{sorting}";
+            return $"book.{sorting}";
         }
-    }
 
+    }
 }

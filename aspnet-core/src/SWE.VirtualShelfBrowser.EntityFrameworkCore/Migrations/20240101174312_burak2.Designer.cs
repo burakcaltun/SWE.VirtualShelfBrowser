@@ -13,8 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace SWE.VirtualShelfBrowser.Migrations
 {
     [DbContext(typeof(VirtualShelfBrowserDbContext))]
-    [Migration("20231231110101_Lending")]
-    partial class Lending
+    [Migration("20240101174312_burak2")]
+    partial class burak2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -239,7 +239,9 @@ namespace SWE.VirtualShelfBrowser.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Lendings");
+                    b.HasIndex("BookId");
+
+                    b.ToTable("AppLendings", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
@@ -1981,6 +1983,15 @@ namespace SWE.VirtualShelfBrowser.Migrations
                     b.HasOne("SWE.VirtualShelfBrowser.Authors.Author", null)
                         .WithMany()
                         .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SWE.VirtualShelfBrowser.Lendings.Lending", b =>
+                {
+                    b.HasOne("SWE.VirtualShelfBrowser.Books.Book", null)
+                        .WithMany()
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

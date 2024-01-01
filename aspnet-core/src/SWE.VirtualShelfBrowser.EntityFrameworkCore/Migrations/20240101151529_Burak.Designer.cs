@@ -13,8 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace SWE.VirtualShelfBrowser.Migrations
 {
     [DbContext(typeof(VirtualShelfBrowserDbContext))]
-    [Migration("20231231144657_castle")]
-    partial class castle
+    [Migration("20240101151529_Burak")]
+    partial class Burak
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

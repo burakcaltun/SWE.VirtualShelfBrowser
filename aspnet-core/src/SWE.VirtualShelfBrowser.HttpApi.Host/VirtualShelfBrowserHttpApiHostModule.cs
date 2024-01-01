@@ -29,6 +29,7 @@ using Volo.Abp.Security.Claims;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
+using SWE.VirtualShelfBrowser.Books;
 
 namespace SWE.VirtualShelfBrowser;
 

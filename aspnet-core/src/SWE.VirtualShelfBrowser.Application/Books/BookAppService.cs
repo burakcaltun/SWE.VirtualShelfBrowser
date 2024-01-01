@@ -26,11 +26,16 @@ public class BookAppService :
     private readonly IAuthorRepository _authorRepository;
 
     public BookAppService(
-         IRepository<Book, Guid> repository,
+        IRepository<Book, Guid> repository,
         IAuthorRepository authorRepository)
         : base(repository)
     {
         _authorRepository = authorRepository;
+        //GetPolicyName = VirtualShelfBrowserPermissions.Books.Default;
+        //GetListPolicyName = VirtualShelfBrowserPermissions.Books.Default;
+        //CreatePolicyName = VirtualShelfBrowserPermissions.Books.Create;
+        //UpdatePolicyName = VirtualShelfBrowserPermissions.Books.Edit;
+        //DeletePolicyName = VirtualShelfBrowserPermissions.Books.Delete;
     }
 
     public override async Task<BookDto> GetAsync(Guid id)
@@ -119,4 +124,6 @@ public class BookAppService :
 
         return $"book.{sorting}";
     }
+
+
 }

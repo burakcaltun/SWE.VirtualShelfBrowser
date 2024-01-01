@@ -9,7 +9,7 @@ using Volo.Abp.Domain.Services;
 
 namespace SWE.VirtualShelfBrowser.Lendings
 {
-    public class LendingManager:DomainService
+    public class LendingManager: DomainService
     {
         private readonly ILendingRepository _lendingRepository;
 

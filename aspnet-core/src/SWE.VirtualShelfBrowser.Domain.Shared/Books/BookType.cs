@@ -12,5 +12,5 @@ public enum BookType
     Science,
     ScienceFiction,
     Poetry,
-    Ergul
+    Romance
 }
