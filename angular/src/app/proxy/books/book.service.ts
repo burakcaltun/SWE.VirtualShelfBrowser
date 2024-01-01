@@ -1,6 +1,6 @@
-import type { BookDto, BookLookupDto, GetBookListDto } from './models';
+import type { AuthorLookupDto, BookDto, CreateUpdateBookDto } from './models';
 import { RestService, Rest } from '@abp/ng.core';
-import type { ListResultDto, PagedResultDto } from '@abp/ng.core';
+import type { ListResultDto, PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class BookService {
   apiName = 'Default';
   
 
-  create = (input: BookDto, config?: Partial<Rest.Config>) =>
+  create = (input: CreateUpdateBookDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, BookDto>({
       method: 'POST',
       url: '/api/app/book',
@@ -36,24 +36,24 @@ export class BookService {
   
 
   getAuthorLookup = (config?: Partial<Rest.Config>) =>
-    this.restService.request<any, ListResultDto<BookLookupDto>>({
+    this.restService.request<any, ListResultDto<AuthorLookupDto>>({
       method: 'GET',
       url: '/api/app/book/author-lookup',
     },
     { apiName: this.apiName,...config });
   
 
-  getList = (input: GetBookListDto, config?: Partial<Rest.Config>) =>
+  getList = (input: PagedAndSortedResultRequestDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, PagedResultDto<BookDto>>({
       method: 'GET',
       url: '/api/app/book',
-      params: { filter: input.filter, sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
+      params: { sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
     },
     { apiName: this.apiName,...config });
   
 
-  update = (id: string, input: BookDto, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, void>({
+  update = (id: string, input: CreateUpdateBookDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, BookDto>({
       method: 'PUT',
       url: `/api/app/book/${id}`,
       body: input,
