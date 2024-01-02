@@ -13,7 +13,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace SWE.VirtualShelfBrowser.Books;
 
-//[Authorize(VirtualShelfBrowserPermissions.Books.Default)]
+[Authorize(VirtualShelfBrowserPermissions.Books.Default)]
 public class BookAppService :
     CrudAppService<
         Book, //The Book entity
@@ -31,11 +31,11 @@ public class BookAppService :
         : base(repository)
     {
         _authorRepository = authorRepository;
-        //GetPolicyName = VirtualShelfBrowserPermissions.Books.Default;
-        //GetListPolicyName = VirtualShelfBrowserPermissions.Books.Default;
-        //CreatePolicyName = VirtualShelfBrowserPermissions.Books.Create;
-        //UpdatePolicyName = VirtualShelfBrowserPermissions.Books.Edit;
-        //DeletePolicyName = VirtualShelfBrowserPermissions.Books.Delete;
+        GetPolicyName = VirtualShelfBrowserPermissions.Books.Default;
+        GetListPolicyName = VirtualShelfBrowserPermissions.Books.Default;
+        CreatePolicyName = VirtualShelfBrowserPermissions.Books.Create;
+        UpdatePolicyName = VirtualShelfBrowserPermissions.Books.Edit;
+        DeletePolicyName = VirtualShelfBrowserPermissions.Books.Delete;
     }
 
     public override async Task<BookDto> GetAsync(Guid id)

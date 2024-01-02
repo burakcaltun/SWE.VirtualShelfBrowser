@@ -13,7 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace SWE.VirtualShelfBrowser.Migrations
 {
     [DbContext(typeof(VirtualShelfBrowserDbContext))]
-    [Migration("20240102101202_Initial")]
+    [Migration("20240102124657_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

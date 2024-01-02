@@ -6,6 +6,7 @@ namespace SWE.VirtualShelfBrowser.Books
 {
     public enum Location
     {
+        Undefined,
         A1,
         A2,
         A3,

@@ -15,7 +15,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace SWE.VirtualShelfBrowser.Lendings
 {
-    //[Authorize(VirtualShelfBrowserPermissions.Lendings.Default)]
+    [Authorize(VirtualShelfBrowserPermissions.Lendings.Default)]
     public class LendingAppService :
         CrudAppService<
             Lending, //The Book entity
@@ -33,11 +33,11 @@ namespace SWE.VirtualShelfBrowser.Lendings
             : base(repository)
         {
             _bookRepository = bookRepository;
-            //GetPolicyName = VirtualShelfBrowserPermissions.Books.Default;
-            //GetListPolicyName = VirtualShelfBrowserPermissions.Books.Default;
-            //CreatePolicyName = VirtualShelfBrowserPermissions.Books.Create;
-            //UpdatePolicyName = VirtualShelfBrowserPermissions.Books.Edit;
-            //DeletePolicyName = VirtualShelfBrowserPermissions.Books.Delete;
+            GetPolicyName = VirtualShelfBrowserPermissions.Books.Default;
+            GetListPolicyName = VirtualShelfBrowserPermissions.Books.Default;
+            CreatePolicyName = VirtualShelfBrowserPermissions.Books.Create;
+            UpdatePolicyName = VirtualShelfBrowserPermissions.Books.Edit;
+            DeletePolicyName = VirtualShelfBrowserPermissions.Books.Delete;
         }
 
 
